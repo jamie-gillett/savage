@@ -35,7 +35,7 @@ class Circle(Element):
         return svg_string
 
 class Rect(Element):
-    def __init__(self, width, height, x, y, rx=0, ry=0):
+    def __init__(self, width, height, x, y, rx=None, ry=None):
         self.width = width
         self.height = height
         self.x = x
@@ -44,7 +44,12 @@ class Rect(Element):
         self.ry = ry
         
     def to_svg(self):
-        svg_string = f"""<rect width="{self.width}" height="{self.height}" x="{self.x}" y="{self.y}" rx="{self.rx}" ry="{self.ry}" />\n"""
+        svg_string = f"""<rect width="{self.width}" height="{self.height}" x="{self.x}" y="{self.y}" """
+        if self.rx:
+            svg_string += f"""rx="{self.rx}" """
+        if self.ry:
+            svg_string += f"""ry="{self.ry}" """
+        svg_string += "/>\n"
         return svg_string
 
 class Line(Element):
