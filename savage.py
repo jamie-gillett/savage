@@ -75,7 +75,8 @@ class Line(Element):
         self.y2 = y2
 
     def to_svg(self):
-        pass
+        svg_string = f"""<line x1="{self.x1}" y1="{self.y1}" x2="{self.x2}" y2="{self.y2}" stroke="black" />\n"""
+        return svg_string
 
 
 class Text(Element):
