@@ -80,9 +80,11 @@ class Line(Element):
 
 
 class Text(Element):
-    def __init__(self):
-        pass
+    def __init__(self, x, y, content):
+        self.x = x
+        self.y = y
+        self.content = content
 
     def to_svg(self):
-        pass
-
+        svg_string = f"""<text x="{self.x}" y="{self.y}">{self.content}</text>\n"""
+        return svg_string
