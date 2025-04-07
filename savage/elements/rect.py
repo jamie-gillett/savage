@@ -16,6 +16,6 @@ class Rect(Element):
             svg_string += f"""rx="{self.rx}" """
         if self.ry:
             svg_string += f"""ry="{self.ry}" """
-        svg_string += self.add_styling()
+        svg_string += self.generate_style_svg()
         svg_string += "/>\n"
         return svg_string

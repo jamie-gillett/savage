@@ -9,7 +9,7 @@ class Group(Element):
         self.children.append(element)
         
     def to_svg(self):
-        svg_string = f"""<g {self.add_styling()}>\n"""
+        svg_string = f"""<g {self.generate_style_svg()}>\n"""
         for element in self.children:
             svg_string += "\t" + element.to_svg()
         svg_string += "</g>"

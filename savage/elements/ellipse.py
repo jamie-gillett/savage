@@ -9,5 +9,5 @@ class Ellipse(Element):
         self.ry = ry
     
     def to_svg(self):
-        svg_string = f"""<ellipse cx="{self.cx}" cy="{self.cy}" rx="{self.rx}" ry="{self.ry}" {self.add_styling()}/>\n"""
+        svg_string = f"""<ellipse cx="{self.cx}" cy="{self.cy}" rx="{self.rx}" ry="{self.ry}" {self.generate_style_svg()}/>\n"""
         return svg_string

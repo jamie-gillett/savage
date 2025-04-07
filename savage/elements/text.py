@@ -8,10 +8,10 @@ class Text(Element):
         self.content = content
 
     def to_svg(self):
-        svg_string = f"""<text x="{self.x}" y="{self.y}"{self.add_styling()}>{self.content}</text>\n"""
+        svg_string = f"""<text x="{self.x}" y="{self.y}"{self.generate_style_svg()}>{self.content}</text>\n"""
         return svg_string
     
-    def add_styling(self):
+    def generate_style_svg(self):
         svg_string = ""
         if self.fill:
             svg_string += f''' fill="{self.fill}"'''
