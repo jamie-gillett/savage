@@ -1,4 +1,4 @@
-from ..element import Element
+from .element import Element
 
 class Rect(Element):
     def __init__(self, width, height, x, y, rx=None, ry=None, **kwargs):

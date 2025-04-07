@@ -1,4 +1,4 @@
-from ..element import Element
+from .element import Element
 
 class Line(Element):
     def __init__(self, x1, y1, x2, y2, **kwargs):

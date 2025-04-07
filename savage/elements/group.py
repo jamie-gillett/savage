@@ -1,4 +1,4 @@
-from ..element import Element
+from .element import Element
 
 class Group(Element):
     def __init__(self, **kwargs):

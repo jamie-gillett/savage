@@ -1,4 +1,4 @@
-from ..element import Element
+from .element import Element
 
 class Ellipse(Element):
     def __init__(self, cx, cy, rx, ry, **kwargs):

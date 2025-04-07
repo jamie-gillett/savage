@@ -1,4 +1,4 @@
-from ..element import Element
+from .element import Element
 
 class Circle(Element):
     def __init__(self, cx, cy, r, **kwargs):
