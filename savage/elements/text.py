@@ -18,5 +18,5 @@ class Text(Element):
         if self.stroke:
             svg_string += f''' stroke="{self.stroke}"'''
         if self.strokewidth:
-            svg_string += f''' stroke-wdith="{self.strokewidth}"'''
+            svg_string += f''' stroke-width="{self.strokewidth}"'''
         return svg_string
