@@ -8,7 +8,7 @@ def test_text_basic_content_and_position():
     assert ">Hello SVG<" in svg
 
 def test_text_with_styling():
-    text = Text(x=0, y=0, content="Styled", fill="red", stroke="blue", strokewidth="2")
+    text = Text(x=0, y=0, content="Styled", fill="red", stroke="blue", strokewidth=2)
     svg = text.to_svg()
     assert 'fill="red"' in svg
     assert 'stroke="blue"' in svg
