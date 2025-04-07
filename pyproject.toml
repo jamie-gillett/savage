@@ -11,7 +11,10 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-test = ["pytest"]
+dev = [
+    "pytest >= 7.0",
+    "pytest-mock >= 3.0"
+]
 
 [tool.setuptools.packages.find]
 where = ["savage"]
