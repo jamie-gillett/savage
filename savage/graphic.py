@@ -1,4 +1,4 @@
-from element import Element
+from elements import Element
 
 class Graphic:
     def __init__(self, width, height):
