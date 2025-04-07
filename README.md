@@ -2,7 +2,7 @@
 
 Savage is a lightweight and modular SVG generator written in Python. Designed with an object-oriented structure, it lets you build entire SVG documents programmatically — from simple shapes and text to complex, nested groups.
 
-At its core is the `Graphic` class, which represents a complete SVG document. Combined with a growing library of SVG elements like `Circle`, `Ellipse`, `Rect`, `Text`, and `Group`, Savage makes it easy to construct and style SVG graphics dynamically.
+At its core is the `Graphic` class, which represents a complete SVG document. Combined with a growing library of SVG elements like `Circle`, `Ellipse`, `Rect`, `Text`, and `Group`, Savage makes it easy (not really) to construct and style SVG graphics dynamically.
 
 ## Features
 
@@ -74,16 +74,3 @@ To run the tests, simply run:
 ``` bash
 pytest
 ```
-
-## Development
-
-To contribute, follow these steps:
-
-1. Fork the repository.
-2. Clone your fork and create a new branch.
-3. Make changes and add tests.
-4. Submit a pull request.
-
-## License
-
-This project is currently unlicensed. Please check back later for licensing information.
