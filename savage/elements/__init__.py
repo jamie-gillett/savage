@@ -1,10 +1,10 @@
 from .element import Element
-from .shapes import Circle
-from .ellipse import Ellipse
 from .group import Group
-from .line import Line
-from .rect import Rect
 from .text import Text
+from .shapes import Circle
+from .shapes import Ellipse
+from .shapes import Line
+from .shapes import Rect
 
 
-__all__ = ["Element", "Circle", "Ellipse", "Group", "Line", "Rect", "Text"]
+__all__ = ["Element", "Group", "Text", "Circle", "Ellipse", "Line", "Rect"]
