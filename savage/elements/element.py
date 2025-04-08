@@ -2,11 +2,11 @@ class Element:
     def __init__(self, **kwargs):
         self.tag = None # defined in child classes
         self.attributes = {}
-        self.styles = {}
         self.content = None # defined in child classes where relevant
-        self.fill = kwargs.get('fill', None)
-        self.stroke = kwargs.get('stroke', None)
-        self.strokewidth = kwargs.get('strokewidth', None)
+        self.styles = {}
+        self.styles['fill'] = kwargs.get('fill', None)
+        self.styles['stroke'] = kwargs.get('stroke', None)
+        self.styles['stroke-width'] = kwargs.get('strokewidth', None)
 
     def to_svg(self):
         svg_string = self.add_open_tag_svg()
@@ -29,10 +29,7 @@ class Element:
     
     def add_style_svg(self):
         styling_svg = ""
-        if self.fill:
-            styling_svg += f''' fill="{self.fill}"'''
-        if self.stroke:
-            styling_svg += f''' stroke="{self.stroke}"'''
-        if self.strokewidth:
-            styling_svg += f''' stroke-width="{self.strokewidth}"'''
+        for style_attribute, value in self.styles.items():
+            if value:
+                styling_svg += f' {style_attribute}="{value}"'
         return styling_svg
