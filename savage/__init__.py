@@ -1,4 +1,4 @@
 from .graphic import Graphic
-from .elements import Circle, Element, Ellipse, Group, Line, Rect, Text
+from .elements import Element, Group, Text, Shape, Circle, Ellipse, Line, Rect
 
-__all__ = ["Graphic", "Element", "Circle", "Ellipse", "Group", "Line", "Rect", "Text"]
+__all__ = ["Graphic", "Element", "Group", "Text", "Shape", "Circle", "Ellipse", "Line", "Rect"]

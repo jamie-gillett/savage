@@ -20,4 +20,3 @@ def test_circle_output_format():
     svg = c.to_svg().strip()
     assert svg.startswith("<circle")
     assert svg.endswith("/>")
-    

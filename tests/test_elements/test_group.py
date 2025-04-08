@@ -11,12 +11,29 @@ def test_group_renders_children():
     assert 'stroke="black"' in svg
     assert "<circle" in svg
     assert "<rect" in svg
-    assert svg.endswith("</g>")
+    assert svg.strip().endswith("</g>")
 
-def test_group_add_method():
+def test_group_add_method_appends_to_content():
     circle = Circle(cx=0, cy=0, r=10)
     group = Group()
     group.add(circle)
-    
-    assert len(group.content) == 1
-    assert group.content[0] is circle
+
+    assert group.content == [circle]
+
+def test_group_add_open_tag_svg_has_newline():
+    group = Group()
+    open_tag = group.add_open_tag_svg()
+    assert open_tag.endswith("\n")
+    assert open_tag.startswith("<g")
+
+def test_group_add_content_svg_renders_nested_elements():
+    circle = Circle(cx=5, cy=5, r=5, fill="green")
+    rect = Rect(width=10, height=5, x=2, y=2, fill="yellow")
+    group = Group(children=[circle, rect])
+
+    content = group.add_content_svg()
+
+    assert "<circle" in content
+    assert "<rect" in content
+    assert content.startswith("\t")
+    assert content.count("\n") == 2  # one per element
