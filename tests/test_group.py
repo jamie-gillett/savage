@@ -18,5 +18,5 @@ def test_group_add_method():
     group = Group()
     group.add(circle)
     
-    assert len(group.children) == 1
-    assert group.children[0] is circle
+    assert len(group.content) == 1
+    assert group.content[0] is circle
