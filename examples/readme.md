@@ -13,10 +13,10 @@ A simple red circle with a black stroke.
 ``` Python
 from savage import Circle, Graphic
 
-g = Graphic()
+g = Graphic(width=100, height=100)
 c = Circle(cx=50, cy=50, r=40, fill="red", stroke="black", strokewidth=2)
 g.add(c)
-g.save("examples/example_1/output.svg")
+g.save("output.svg")
 ```
 
 ![Circle Example](example_1/output.svg)
@@ -37,7 +37,7 @@ g.add(r)
 g.save("examples/transformed_rectangle.svg")
 ```
 
-![Transformed Rectangle](example_2/output.svg)
+<!-- ![Transformed Rectangle](example_2/output.svg) -->
 
 ---
 
@@ -56,7 +56,7 @@ g.add(l)
 g.save("examples/polygon_polyline.svg")
 ```
 
-![Polygon and Polyline](example_3/output.svg_)
+<!-- ![Polygon and Polyline](example_3/output.svg_) -->
 
 ---
 
@@ -73,7 +73,7 @@ g.add(t)
 g.save("examples/text.svg")
 ```
 
-![Styled Text](example_4/output.svg)
+<!-- ![Styled Text](example_4/output.svg) -->
 
 ---
 
@@ -93,7 +93,7 @@ g.add(Text(x=10, y=80, content="Shapes!", fill="black", fontfamily="Verdana"))
 g.save("examples/combined.svg")
 ```
 
-![Combined Graphic](example_5/output.svg)
+<!-- ![Combined Graphic](example_5/output.svg) -->
 
 ---
 
