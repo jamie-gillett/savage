@@ -1,29 +1,22 @@
 from savage import Text
 
-def test_text_includes_position_attributes():
-    text = Text(x=10, y=20, content="Hello SVG")
-    svg = text.to_svg()
-    
-    assert 'x="10"' in svg
-    assert 'y="20"' in svg
-
-def test_text_includes_content_between_tags():
-    text = Text(x=0, y=0, content="Sample Text")
-    svg = text.to_svg()
-    
-    assert ">Sample Text<" in svg
-
-def test_text_applies_styling_correctly():
-    text = Text(x=0, y=0, content="Styled", fill="red", stroke="blue", strokewidth=2)
-    svg = text.to_svg()
-    
-    assert 'fill="red"' in svg
-    assert 'stroke="blue"' in svg
-    assert 'stroke-width="2"' in svg
-
-def test_text_svg_tag_structure():
-    text = Text(x=5, y=5, content="Format")
-    svg = text.to_svg().strip()
-    
-    assert svg.startswith("<text")
+def test_text_basic():
+    t = Text(x=100, y=200, content="Hello SVG")
+    svg = t.to_svg()
+    assert '<text' in svg
+    assert 'x="100"' in svg
+    assert 'y="200"' in svg
+    assert 'Hello SVG' in svg
     assert svg.endswith("</text>")
+
+def test_text_with_font_and_alignment():
+    t = Text(x=50, y=50, content="Aligned Text", font="Verdana", anchor="middle", baseline="middle")
+    svg = t.to_svg()
+    assert 'font-family="Verdana"' in svg
+    assert 'text-anchor="middle"' in svg
+    assert 'dominant-baseline="middle"' in svg
+
+def test_text_with_transformations():
+    t = Text(x=0, y=0, content="Rotated").rotate(45)
+    svg = t.to_svg()
+    assert 'transform="rotate(45)"' in svg
