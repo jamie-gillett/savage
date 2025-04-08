@@ -1,4 +1,3 @@
-import pytest
 from savage import Graphic, Circle, Rect
 
 def test_graphic_creation():

@@ -1,4 +1,4 @@
-from savage.elements.rect import Rect
+from savage import Rect
 
 def test_rect_basic_attributes():
     rect = Rect(width=100, height=50, x=10, y=20)

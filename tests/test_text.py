@@ -1,4 +1,4 @@
-from savage.elements.text import Text
+from savage import Text
 
 def test_text_basic_content_and_position():
     text = Text(x=10, y=20, content="Hello SVG")
