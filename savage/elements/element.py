@@ -53,7 +53,7 @@ class Element:
     def add_style_svg(self):
         styling_svg = ""
         for style_attribute, value in self.styles.items():
-            if value:
+            if value is not None:
                 styling_svg += f' {style_attribute}="{value}"'
         return styling_svg
 

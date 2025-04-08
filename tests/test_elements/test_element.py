@@ -1,55 +1,87 @@
 from savage import Element
 
-# DummyElement for style and attribute testing
+# DummyElement for testing
 class DummyElement(Element):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
-# DummyTagElement to test base class to_svg() method
-class DummyTagElement(Element):
-    def __init__(self):
-        super().__init__(fill="black")
         self.tag = "dummy"
-        self.attributes = {"x": 10}
-        self.content = "Hello"
+        self.content = "Content"
 
-def test_add_style_svg_all_attributes():
-    dummy_element = DummyElement(fill="red", stroke="blue", strokewidth=2)
-    result = dummy_element.add_style_svg()
-    assert 'fill="red"' in result
-    assert 'stroke="blue"' in result
-    assert 'stroke-width="2"' in result
+    def to_svg(self):
+        return super().to_svg()
 
-def test_add_style_svg_some_attributes():
-    dummy_element = DummyElement(fill="green")
-    result = dummy_element.add_style_svg()
-    assert 'fill="green"' in result
-    assert 'stroke=' not in result
-    assert 'stroke-width=' not in result
 
-def test_add_style_svg_no_attributes():
-    dummy_element = DummyElement()
-    result = dummy_element.add_style_svg()
-    assert result.strip() == ""
+def test_styles_all_set():
+    el = DummyElement(fill="red", stroke="blue", strokewidth=2)
+    svg = el.to_svg()
+    assert 'fill="red"' in svg
+    assert 'stroke="blue"' in svg
+    assert 'stroke-width="2"' in svg
+
+def test_styles_partial():
+    el = DummyElement(fill="green")
+    svg = el.to_svg()
+    assert 'fill="green"' in svg
+    assert 'stroke=' not in svg
+    assert 'stroke-width=' not in svg
+
+def test_no_styles():
+    el = DummyElement()
+    svg = el.to_svg()
+    assert 'fill=' not in svg
+    assert 'stroke=' not in svg
+
+def test_basic_output_structure():
+    el = DummyElement()
+    svg = el.to_svg().strip()
+    assert svg.startswith("<dummy")
+    assert svg.endswith("</dummy>")
+    assert ">Content<" in svg
 
 def test_add_attribute_svg():
-    dummy_element = DummyElement()
-    dummy_element.attributes = {"cx": 50, "cy": 100}
-    result = dummy_element.add_attribute_svg()
-    assert 'cx="50"' in result
-    assert 'cy="100"' in result
+    el = DummyElement()
+    el.attributes["x"] = 10
+    el.attributes["y"] = 20
+    svg = el.to_svg()
+    assert 'x="10"' in svg
+    assert 'y="20"' in svg
 
-def test_add_attribute_svg_empty():
-    dummy_element = DummyElement()
-    result = dummy_element.add_attribute_svg()
-    assert result.strip() == ""
+def test_transform_translate():
+    el = DummyElement().translate(10, 20)
+    svg = el.to_svg()
+    assert 'transform="translate(10,20)"' in svg
 
-def test_element_to_svg_base_method():
-    dummy_element = DummyTagElement()
-    result = dummy_element.to_svg()
+def test_transform_rotate_no_origin():
+    el = DummyElement().rotate(45)
+    svg = el.to_svg()
+    assert 'transform="rotate(45)"' in svg
 
-    assert result.startswith("<dummy ")
-    assert 'x="10"' in result
-    assert 'fill="black"' in result
-    assert "Hello" in result
-    assert result.endswith("</dummy>")
+def test_transform_rotate_with_origin():
+    el = DummyElement().rotate(30, cx=5, cy=5)
+    svg = el.to_svg()
+    assert 'transform="rotate(30 5 5)"' in svg
+
+def test_transform_scale_one_arg():
+    el = DummyElement().scale(2)
+    svg = el.to_svg()
+    assert 'transform="scale(2)"' in svg
+
+def test_transform_scale_two_args():
+    el = DummyElement().scale(2, 3)
+    svg = el.to_svg()
+    assert 'transform="scale(2 3)"' in svg
+
+def test_transform_skew_x():
+    el = DummyElement().skew(x=45)
+    svg = el.to_svg()
+    assert 'transform="skewX(45)"' in svg
+
+def test_transform_skew_y():
+    el = DummyElement().skew(y=30)
+    svg = el.to_svg()
+    assert 'transform="skewY(30)"' in svg
+
+def test_transform_combined_order():
+    el = DummyElement().translate(10, 10).rotate(45).scale(2)
+    svg = el.to_svg()
+    assert 'transform="translate(10,10) rotate(45) scale(2)"' in svg
