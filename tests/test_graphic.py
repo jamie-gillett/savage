@@ -54,3 +54,18 @@ def test_graphic_save(mocker):
     # Check that the file contents match the expected SVG output
     svg_output = graphic.to_svg()
     mock_open.return_value.write.assert_called_once_with(svg_output)
+
+def test_svg_element_order_preserved():
+    graphic = Graphic(width=500, height=400)
+    rect = Rect(width=100, height=50, x=10, y=10)
+    circle = Circle(cx=20, cy=20, r=10)
+
+    graphic.add(rect)
+    graphic.add(circle)
+
+    svg_output = graphic.to_svg()
+
+    # rect should appear before circle
+    rect_index = svg_output.index("<rect")
+    circle_index = svg_output.index("<circle")
+    assert rect_index < circle_index
