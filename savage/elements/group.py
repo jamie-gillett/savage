@@ -9,10 +9,10 @@ class Group(Element):
     def add(self, element:Element):
         self.content.append(element)
         
-    def generate_open_tag_svg(self):
-        return super().generate_open_tag_svg() +"\n"
+    def add_open_tag_svg(self):
+        return super().add_open_tag_svg() +"\n"
     
-    def generate_content_svg(self):
+    def add_content_svg(self):
         content_svg = ""
         for element in self.content:
             content_svg += "\t" + element.to_svg() + "\n"
