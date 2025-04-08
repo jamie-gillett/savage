@@ -1,5 +1,5 @@
 from .element import Element
-from .circle import Circle
+from .shapes import Circle
 from .ellipse import Ellipse
 from .group import Group
 from .line import Line
