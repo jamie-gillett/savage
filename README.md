@@ -30,6 +30,11 @@ cd savage
 pip install -e .
 ```
 
+### Installation with test setup
+``` bash
+pip install -e .[dev]
+```
+
 ## Usage
 
 Savage is built around combining individual SVG elements into a full document. You can create shapes and text, organize them into groups, and output valid SVG markup using the `Graphic` class.
