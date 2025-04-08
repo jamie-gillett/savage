@@ -15,5 +15,5 @@ class Group(Element):
     def add_content_svg(self):
         content_svg = ""
         for element in self.content:
-            content_svg += "\t" + element.to_svg() + "\n"
+            content_svg += "    " + element.to_svg() + "\n"
         return content_svg

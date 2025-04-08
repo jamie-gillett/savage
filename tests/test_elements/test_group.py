@@ -35,5 +35,5 @@ def test_group_add_content_svg_renders_nested_elements():
 
     assert "<circle" in content
     assert "<rect" in content
-    assert content.startswith("\t")
+    assert content.startswith("    ")
     assert content.count("\n") == 2  # one per element
