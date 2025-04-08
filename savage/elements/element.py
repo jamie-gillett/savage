@@ -41,7 +41,7 @@ class Element:
         return svg_string
 
     def add_open_tag_svg(self):
-        open_tag_svg = f"<{self.tag}{self.add_attribute_svg()}{self.add_style_svg()}{self.add_transform_svg()}>"
+        open_tag_svg = f"<{self.tag}{self.add_attribute_svg()}{self.add_transform_svg()}{self.add_style_svg()}>"
         return open_tag_svg
 
     def add_attribute_svg(self):
