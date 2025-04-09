@@ -60,15 +60,6 @@ class Element:
             styling_svg = f' style="{" ".join(inline_styles)}"'
         return styling_svg
 
-    # def add_style_svg(self):
-    #     styling_svg = ""
-    #     for style_attribute, value in self.styles.items():
-    #         if value is not None:
-    #             styling_svg += f' {style_attribute}="{value}"'
-    #     return styling_svg
-
-
-
     def add_transform_svg(self):
         if self.transformations:
             return f''' transform="{" ".join(self.transformations)}"'''
