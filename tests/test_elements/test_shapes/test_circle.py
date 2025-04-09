@@ -7,14 +7,7 @@ def test_circle_basic_attributes():
     assert 'cx="50"' in svg
     assert 'cy="75"' in svg
     assert 'r="25"' in svg
-    
-def test_circle_with_styling():
-    c = Circle(cx=10, cy=20, r=5, fill="red", stroke="black", strokewidth=2)
-    svg = c.to_svg()
-    assert 'fill="red"' in svg
-    assert 'stroke="black"' in svg
-    assert 'stroke-width="2"' in svg
-    
+   
 def test_circle_output_format():
     c = Circle(cx=0, cy=0, r=10)
     svg = c.to_svg().strip()

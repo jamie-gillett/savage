@@ -33,9 +33,9 @@ def test_graphic_to_svg():
     assert '<?xml version="1.0" encoding="UTF-8" standalone="no"?>' in svg_output
     assert '<svg xmlns="http://www.w3.org/2000/svg" width="500" height="400">' in svg_output
     assert '<circle' in svg_output  # Verify Circle element is included
-    assert 'fill="red"' in svg_output  # Verify the fill of the circle
+    assert 'fill: red;' in svg_output  # Verify the fill of the circle
     assert '<rect' in svg_output  # Verify Rect element is included
-    assert 'fill="blue"' in svg_output  # Verify the fill of the rect
+    assert 'fill: blue;' in svg_output  # Verify the fill of the rect
     assert svg_output.endswith('</svg>')  # Ensure the SVG tag closes correctly
 
 def test_graphic_save(mocker):

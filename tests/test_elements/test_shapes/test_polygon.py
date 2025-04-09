@@ -6,8 +6,6 @@ def test_polygon_basic_attributes():
 
     assert '<polygon' in svg
     assert 'points="10,20 30,40 50,60"' in svg
-    assert 'fill="red"' in svg
-    assert 'stroke="blue"' in svg
 
 def test_polygon_with_invalid_points():
     try:

@@ -8,7 +8,7 @@ def test_group_renders_children():
     svg = group.to_svg()
 
     assert svg.startswith("<g")
-    assert 'stroke="black"' in svg
+    assert 'stroke: black;' in svg
     assert "<circle" in svg
     assert "<rect" in svg
     assert svg.strip().endswith("</g>")

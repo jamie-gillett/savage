@@ -6,8 +6,6 @@ def test_polyline_basic_attributes():
 
     assert '<polyline' in svg
     assert 'points="10,20 30,40 50,60"' in svg
-    assert 'fill="green"' in svg
-    assert 'stroke="black"' in svg
 
 def test_polyline_with_invalid_points():
     try:

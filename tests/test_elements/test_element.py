@@ -14,14 +14,15 @@ class DummyElement(Element):
 def test_styles_all_set():
     el = DummyElement(fill="red", stroke="blue", strokewidth=2)
     svg = el.to_svg()
-    assert 'fill="red"' in svg
-    assert 'stroke="blue"' in svg
-    assert 'stroke-width="2"' in svg
+    assert 'style="' in svg
+    assert 'fill: red;' in svg
+    assert 'stroke: blue;' in svg
+    assert 'stroke-width: 2;"' in svg
 
 def test_styles_partial():
     el = DummyElement(fill="green")
     svg = el.to_svg()
-    assert 'fill="green"' in svg
+    assert 'fill: green;"' in svg
     assert 'stroke=' not in svg
     assert 'stroke-width=' not in svg
 

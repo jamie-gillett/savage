@@ -26,6 +26,6 @@ def test_shape_applies_styles_correctly():
     shape = DummyShape(fill="red", stroke="black", strokewidth=1)
     svg = shape.to_svg()
     
-    assert 'fill="red"' in svg
-    assert 'stroke="black"' in svg
-    assert 'stroke-width="1"' in svg
+    assert 'fill: red;' in svg
+    assert 'stroke: black;' in svg
+    assert 'stroke-width: 1;' in svg

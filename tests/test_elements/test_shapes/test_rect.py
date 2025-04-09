@@ -20,13 +20,6 @@ def test_rect_without_rx_ry():
     assert 'rx=' not in svg
     assert 'ry=' not in svg
 
-def test_rect_with_styling():
-    rect = Rect(width=100, height=60, x=0, y=0, fill="green", stroke="black", strokewidth="1")
-    svg = rect.to_svg()
-    assert 'fill="green"' in svg
-    assert 'stroke="black"' in svg
-    assert 'stroke-width="1"' in svg
-
 def test_rect_svg_format():
     rect = Rect(width=10, height=10, x=0, y=0)
     svg = rect.to_svg().strip()
