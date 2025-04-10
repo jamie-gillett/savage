@@ -1,6 +1,6 @@
 from savage import Graphic, Circle, Rect, Ellipse, Line, Polygon, Polyline, Text
 
-g = Graphic(width=670, height=120)
+g = Graphic(width=670, height=120, background="white")
 g.add(Circle(cx=60,cy=60,r=50))
 g.add(Text(x=60, y=60, content="circle"))
 g.add(Rect(width=100, height=80, x=120, y=20, rx=10, ry=10))
