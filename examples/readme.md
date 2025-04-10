@@ -13,12 +13,12 @@ Demonstration of basic SVG shape elements supported by the savage package. Inclu
 ![Basic Shapes](example_1/output.svg)
 
 <details>
-<summary>svg output</summary>
+<summary>python script</summary>
 
 ```Python
 from savage import Graphic, Circle, Rect, Ellipse, Line, Polygon, Polyline, Text
 
-g = Graphic(width=670, height=120)
+g = Graphic(width=670, height=120, background="white")
 g.add(Circle(cx=60,cy=60,r=50))
 g.add(Text(x=60, y=60, content="circle"))
 g.add(Rect(width=100, height=80, x=120, y=20, rx=10, ry=10))
@@ -50,6 +50,7 @@ g.save("output.svg")
     }
     text { font-family: sans-serif; text-anchor: middle; dominant-baseline: middle; fill: #40484D; }
   </style>
+  <rect width="100%" height="100%" style="fill: white;" />
   <circle cx="60" cy="60" r="50" />
   <text x="60" y="60">circle</text>
   <rect width="100" height="80" x="120" y="20" rx="10" ry="10" />
