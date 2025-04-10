@@ -8,5 +8,3 @@ class Line(Shape):
         self.attributes['y1'] = y1
         self.attributes['x2'] = x2
         self.attributes['y2'] = y2
-        if not self.styles['stroke']:
-            self.styles['stroke'] = "black"

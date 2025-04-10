@@ -8,5 +8,6 @@ class Text(Element):
         self.attributes['y'] = y
         self.content = content
         self.styles['font-family'] = kwargs.get('font', None)
+        self.styles['font-size'] = kwargs.get('size', None)
         self.styles['text-anchor'] = kwargs.get('anchor', None)
         self.styles['dominant-baseline'] = kwargs.get('baseline', None)

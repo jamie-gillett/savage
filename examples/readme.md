@@ -6,28 +6,62 @@ Each example includes a short description, the code used to generate the SVG, an
 
 ---
 
-## Example 1: Basic Circle
+## Example 1: Basic Shapes
 
-A simple red circle with a black stroke.
+Demonstration of basic SVG shape elements supported by the savage package. Includes `circle`, `rect` (with optional rounded corners), `ellilpse`, `line`, `polyline` (open) and `polygon` (closed) with labels done via `text` element.
+
+![Basic Shapes](example_1/output.svg)
+
+<details>
+<summary>svg output</summary>
 
 ```Python
-from savage import Circle, Graphic
+from savage import Graphic, Circle, Rect, Ellipse, Line, Polygon, Polyline, Text
 
-g = Graphic(width=100, height=100)
-c = Circle(cx=50, cy=50, r=40, fill="red", stroke="black", strokewidth=2)
-g.add(c)
+g = Graphic(width=670, height=120)
+g.add(Circle(cx=60,cy=60,r=50))
+g.add(Text(x=60, y=60, content="circle"))
+g.add(Rect(width=100, height=80, x=120, y=20, rx=10, ry=10))
+g.add(Text(x=170, y=60, content="rect"))
+g.add(Ellipse(cx=280, cy=60, rx=50, ry=40))
+g.add(Text(x=280, y=60, content="ellipse"))
+g.add(Line(x1=340, y1=110, x2=440, y2=10))
+g.add(Text(x=390, y=60, content="line"))
+g.add(Polyline(points=[450,110, 450,10, 550,10]))
+g.add(Text(x=500, y=60, content="polyline"))
+g.add(Polygon(points=[560,110, 660,110, 660,10]))
+g.add(Text(x=610, y=60, content="polygon"))
+
 g.save("output.svg")
 ```
-
-![Circle Example](example_1/output.svg)
+</details>
 
 <details>
 <summary>svg output</summary>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
-	<circle cx="50" cy="50" r="40" fill="red" stroke="black" stroke-width="2" />
+<svg xmlns="http://www.w3.org/2000/svg" width="670" height="120">
+  <style>
+    circle, ellipse, line, polygon, polyline, rect {
+      fill: #EBF3F7;
+      stroke: #9CA7AD;
+      stroke-width: 2;
+    }
+    text { font-family: sans-serif; text-anchor: middle; dominant-baseline: middle; fill: #40484D; }
+  </style>
+  <circle cx="60" cy="60" r="50" />
+  <text x="60" y="60">circle</text>
+  <rect width="100" height="80" x="120" y="20" rx="10" ry="10" />
+  <text x="170" y="60">rect</text>
+  <ellipse cx="280" cy="60" rx="50" ry="40" />
+  <text x="280" y="60">ellipse</text>
+  <line x1="340" y1="110" x2="440" y2="10" />
+  <text x="390" y="60">line</text>
+  <polyline points="450,110 450,10 550,10" />
+  <text x="500" y="60">polyline</text>
+  <polygon points="560,110 660,110 660,10" />
+  <text x="610" y="60">polygon</text>
 </svg>
 ```
 </details>
