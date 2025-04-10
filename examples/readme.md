@@ -77,7 +77,7 @@ This example highlights how different styling attributes can be applied to SVG e
 - A circle with a **colored stroke** (`red`)
 - A circle with an **increased stroke width** (`4` units)
 
-![Transformed Rectangle](example_2/output.svg)
+![Styling](example_2/output.svg)
 
 <details>
 <summary>python script</summary>
@@ -124,31 +124,55 @@ g.save("output.svg")
 
 ---
 
-## Example 3: Polygon and Polyline
+## Example 3: Groups and Transformations
 
-A polygon and a polyline created from a list of points.
+This example showcases how grouping and transformations work in the `savage` package. Groups allow multiple elements to be manipulated as a single unit. In this case:
+
+- Four squares are arranged into a larger square.
+- The group is **rotated** by 45 degrees around the origin.
+- That rotated group is then **translated** (moved) to the center of the canvas.
+
+![Groups and Transformations](example_3/output.svg)
+
+<details>
+<summary>python script</summary>
 
 ```Python
-from savage import Polygon, Polyline, Graphic
+from savage import Graphic, Rect, Group
 
-g = Graphic(width=70, height=90)
-p = Polygon(points=[10,10, 60,10, 35,50], fill="lime", stroke="green")
-l = Polyline(points=[10,60, 30,80, 50,60], fill="transparent", stroke="black", strokewidth=2)
-g.add(p)
-g.add(l)
+g = Graphic(width=300, height=300)
+
+rotated_group = Group()
+rotated_group.add( Rect( x=0, y=-100, width=100, height=100, fill="cornsilk", stroke="none") )
+rotated_group.add( Rect( x=-100, y=0, width=100, height=100, fill="cornsilk", stroke="none") )
+rotated_group.add( Rect( x=-100, y=-100, width=100, height=100, fill="crimson", stroke="none") )
+rotated_group.add( Rect( x=0, y=0, width=100, height=100, fill="crimson", stroke="none") )
+rotated_group.rotate(45)
+
+translated_group = Group()
+translated_group.add( rotated_group )
+translated_group.translate(dx=150, dy=150)
+
+g.add(translated_group)
+
 g.save("output.svg")
 ```
-
-![Polygon and Polyline](example_3/output.svg)
+</details>
 
 <details>
 <summary>svg output</summary>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="70" height="90">
-	<polygon points="10,10 60,10 35,50" fill="lime" stroke="green" />
-	<polyline points="10,60 30,80 50,60" fill="transparent" stroke="black" stroke-width="2" />
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300">
+  <g transform="translate(150,150)">
+  <g transform="rotate(45)">
+  <rect width="100" height="100" x="0" y="-100" style="fill: cornsilk; stroke: none;" />
+  <rect width="100" height="100" x="-100" y="0" style="fill: cornsilk; stroke: none;" />
+  <rect width="100" height="100" x="-100" y="-100" style="fill: crimson; stroke: none;" />
+  <rect width="100" height="100" x="0" y="0" style="fill: crimson; stroke: none;" />
+</g>
+</g>
 </svg>
 ```
 </details>

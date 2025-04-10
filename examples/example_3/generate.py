@@ -1,8 +1,18 @@
-from savage import Polygon, Polyline, Graphic
+from savage import Graphic, Rect, Group
 
-g = Graphic(width=70, height=90)
-p = Polygon(points=[10,10, 60,10, 35,50], fill="lime", stroke="green")
-l = Polyline(points=[10,60, 30,80, 50,60], fill="transparent", stroke="black", strokewidth=2)
-g.add(p)
-g.add(l)
+g = Graphic(width=300, height=300)
+
+rotated_group = Group()
+rotated_group.add( Rect( x=0, y=-100, width=100, height=100, fill="cornsilk", stroke="none") )
+rotated_group.add( Rect( x=-100, y=0, width=100, height=100, fill="cornsilk", stroke="none") )
+rotated_group.add( Rect( x=-100, y=-100, width=100, height=100, fill="crimson", stroke="none") )
+rotated_group.add( Rect( x=0, y=0, width=100, height=100, fill="crimson", stroke="none") )
+rotated_group.rotate(45)
+
+translated_group = Group()
+translated_group.add( rotated_group )
+translated_group.translate(dx=150, dy=150)
+
+g.add(translated_group)
+
 g.save("output.svg")
