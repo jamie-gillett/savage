@@ -69,28 +69,55 @@ g.save("output.svg")
 
 ---
 
-## Example 2: Transformed Rectangle
+## Example 2: Styling – Fill, Stroke, and Stroke Width
 
-A rectangle that has been rotated and translated using transformation chaining.
+This example highlights how different styling attributes can be applied to SVG elements using the `savage` package.
 
-```Python
-from savage import Rect, Graphic
-
-g = Graphic(width=100, height=100)
-r = Rect(x=10, y=10, width=80, height=40, rx=5, ry=5, fill="blue", stroke="black").rotate(10).translate(10,10)
-g.add(r)
-g.save("output.svg")
-```
+- A circle with a **custom fill color** (`cornsilk`)
+- A circle with a **colored stroke** (`red`)
+- A circle with an **increased stroke width** (`4` units)
 
 ![Transformed Rectangle](example_2/output.svg)
+
+<details>
+<summary>python script</summary>
+
+```Python
+from savage import Graphic, Circle, Text
+
+g = Graphic(width=340, height=120, background="white")
+g.add( Circle(cx=60, cy=60, r=50, fill="cornsilk") )
+g.add( Text(x=60, y=60, content="fill") )
+g.add( Circle(cx=170, cy=60, r=50, stroke="red") )
+g.add( Text(x=170, y=60, content="stroke") )
+g.add( Circle(cx=280, cy=60, r=50, strokewidth=4) )
+g.add( Text(x=280, y=60, content="stroke-width") )
+
+g.save("output.svg")
+```
+</details>
 
 <details>
 <summary>svg output</summary>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
-	<rect width="80" height="40" x="10" y="10" rx="5" ry="5" transform="rotate(10) translate(10,10)" fill="blue" stroke="black" />
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="120">
+  <style>
+    circle {
+      fill: #EBF3F7;
+      stroke: #9CA7AD;
+      stroke-width: 2;
+    }
+    text { font-family: sans-serif; text-anchor: middle; dominant-baseline: middle; fill: #40484D; }
+  </style>
+  <rect width="100%" height="100%" style="fill: white;" />
+  <circle cx="60" cy="60" r="50" style="fill: cornsilk;" />
+  <text x="60" y="60">fill</text>
+  <circle cx="170" cy="60" r="50" style="stroke: red;" />
+  <text x="170" y="60">stroke</text>
+  <circle cx="280" cy="60" r="50" style="stroke-width: 4;" />
+  <text x="280" y="60">stroke-width</text>
 </svg>
 ```
 </details>
