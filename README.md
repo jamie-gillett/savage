@@ -52,7 +52,7 @@ circle = Circle(cx=110, cy=60, r=40, fill="blue")
 label = Text(x=60, y=65, content="Hello SVG!", fill="white", font_size="18")
 
 # Group them together
-group = Group(children=[rect, circle, label])
+group = Group(content=[rect, circle, label])
 
 # Create the SVG document and add the group
 doc = Graphic(width=300, height=150)

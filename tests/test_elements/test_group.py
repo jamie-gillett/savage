@@ -3,7 +3,7 @@ from savage import Circle, Rect, Group
 def test_group_renders_children():
     circle = Circle(cx=10, cy=10, r=5, fill="red")
     rect = Rect(width=20, height=10, x=5, y=5, fill="blue")
-    group = Group(children=[circle, rect], stroke="black")
+    group = Group(content=[circle, rect], stroke="black")
 
     svg = group.to_svg()
 
@@ -29,7 +29,7 @@ def test_group_add_open_tag_svg_has_newline():
 def test_group_add_content_svg_renders_nested_elements():
     circle = Circle(cx=5, cy=5, r=5, fill="green")
     rect = Rect(width=10, height=5, x=2, y=2, fill="yellow")
-    group = Group(children=[circle, rect])
+    group = Group(content=[circle, rect])
 
     content = group.add_content_svg()
 
