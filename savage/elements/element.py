@@ -3,11 +3,10 @@ class Element:
         self.tag = None # defined in child classes
         self.attributes = {}
         self.content = None # defined in child classes where relevant
+        style_attributes = {'fill':'fill', 'stroke':'stroke', 'strokewidth':'stroke-width', 'opacity':'opacity'}
         self.styles = {}
-        self.styles['fill'] = kwargs.get('fill', None)
-        self.styles['stroke'] = kwargs.get('stroke', None)
-        self.styles['stroke-width'] = kwargs.get('strokewidth', None)
-        self.styles['opacity'] = kwargs.get('opacity', None)
+        for style_argument, style_attribute in style_attributes.items():
+            self.styles[style_attribute] = kwargs.get(style_argument, None)
         self.transformations = []
         
     def translate(self, dx, dy):
