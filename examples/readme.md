@@ -176,3 +176,190 @@ g.save("output.svg")
 </svg>
 ```
 </details>
+
+---
+
+## Example 4: Generative Art
+
+Vera Molnár I am not.
+
+![Groups and Transformations](example_4/output.svg)
+
+<details>
+<summary>python script</summary>
+
+```Python
+from random import randint, random
+from savage import Graphic, Rect
+
+cols = 8
+rows = 8
+
+target = (randint(3,cols-3), randint(3,rows-3))
+
+size = 64
+margin = 8
+
+g = Graphic(width=margin+cols*(size+margin), height=margin+rows*(size+margin), background="white")
+
+for r_i in range(rows):
+    for c_i in range(cols):
+        if c_i in [target[0]-1, target[0], target[0]+1] and r_i in [target[1]-1, target[1], target[1]+1]:
+            continue
+        v = randint(25,50)
+        g.add( Rect(width=size, height=size, x=margin+c_i*(size+margin), y=margin+r_i*(size+margin), fill=f"RGB({v},{v},{v})", stroke="none") )
+        
+for r_i in range(-1,2):
+    for c_i in range(-1,2):
+        if r_i == 0 and c_i == 0:
+            continue
+        col = target[0] + c_i
+        row = target[1] + r_i
+        posX = margin+col*(size+margin)
+        posY = margin+row*(margin+size)
+        v = randint(25,50)
+        hue = randint(10,20)
+        border_rect = Rect(width=size, height=size, x=posX, y=posY, fill=f"RGB({v+hue},{v},{v})", stroke="none")
+        border_rect.rotate((random()-0.5)*5, cx=posX+size/2, cy=posY+size/2)
+        g.add(border_rect)
+        
+for i in range(size//2+2*margin):
+    tgtX = margin+target[0]*(size+margin)+size//2
+    tgtY = margin+target[1]*(size+margin)+size//2
+    r = Rect(width=(i+1)*2, height=(i+1)*2, x=tgtX-i-1, y=tgtY-i-1, fill="none", stroke=f"RGB(220,20,60)", strokewidth=random()*2+0.1, opacity=f"{randint(50,75)}%")
+    angle = 24 * (i/(size//2)) * (random()-0.5)
+    r.rotate(angle=angle, cx=tgtX, cy=tgtY)
+    g.add(r)
+
+g.save("output.svg")
+```
+</details>
+
+<details>
+<summary>svg output</summary>
+
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="584" height="584">
+  <style>
+    rect {
+      fill: #EBF3F7;
+      stroke: #9CA7AD;
+      stroke-width: 2;
+    }
+  </style>
+  <rect width="100%" height="100%" style="fill: white; stroke: none" />
+  <rect width="64" height="64" x="8" y="8" style="fill: RGB(37,37,37); stroke: none;" />
+  <rect width="64" height="64" x="80" y="8" style="fill: RGB(39,39,39); stroke: none;" />
+  <rect width="64" height="64" x="152" y="8" style="fill: RGB(43,43,43); stroke: none;" />
+  <rect width="64" height="64" x="224" y="8" style="fill: RGB(50,50,50); stroke: none;" />
+  <rect width="64" height="64" x="296" y="8" style="fill: RGB(28,28,28); stroke: none;" />
+  <rect width="64" height="64" x="368" y="8" style="fill: RGB(38,38,38); stroke: none;" />
+  <rect width="64" height="64" x="440" y="8" style="fill: RGB(27,27,27); stroke: none;" />
+  <rect width="64" height="64" x="512" y="8" style="fill: RGB(25,25,25); stroke: none;" />
+  <rect width="64" height="64" x="8" y="80" style="fill: RGB(35,35,35); stroke: none;" />
+  <rect width="64" height="64" x="80" y="80" style="fill: RGB(47,47,47); stroke: none;" />
+  <rect width="64" height="64" x="152" y="80" style="fill: RGB(50,50,50); stroke: none;" />
+  <rect width="64" height="64" x="224" y="80" style="fill: RGB(25,25,25); stroke: none;" />
+  <rect width="64" height="64" x="296" y="80" style="fill: RGB(46,46,46); stroke: none;" />
+  <rect width="64" height="64" x="368" y="80" style="fill: RGB(43,43,43); stroke: none;" />
+  <rect width="64" height="64" x="440" y="80" style="fill: RGB(26,26,26); stroke: none;" />
+  <rect width="64" height="64" x="512" y="80" style="fill: RGB(47,47,47); stroke: none;" />
+  <rect width="64" height="64" x="8" y="152" style="fill: RGB(36,36,36); stroke: none;" />
+  <rect width="64" height="64" x="80" y="152" style="fill: RGB(26,26,26); stroke: none;" />
+  <rect width="64" height="64" x="368" y="152" style="fill: RGB(26,26,26); stroke: none;" />
+  <rect width="64" height="64" x="440" y="152" style="fill: RGB(39,39,39); stroke: none;" />
+  <rect width="64" height="64" x="512" y="152" style="fill: RGB(38,38,38); stroke: none;" />
+  <rect width="64" height="64" x="8" y="224" style="fill: RGB(42,42,42); stroke: none;" />
+  <rect width="64" height="64" x="80" y="224" style="fill: RGB(45,45,45); stroke: none;" />
+  <rect width="64" height="64" x="368" y="224" style="fill: RGB(32,32,32); stroke: none;" />
+  <rect width="64" height="64" x="440" y="224" style="fill: RGB(32,32,32); stroke: none;" />
+  <rect width="64" height="64" x="512" y="224" style="fill: RGB(30,30,30); stroke: none;" />
+  <rect width="64" height="64" x="8" y="296" style="fill: RGB(50,50,50); stroke: none;" />
+  <rect width="64" height="64" x="80" y="296" style="fill: RGB(45,45,45); stroke: none;" />
+  <rect width="64" height="64" x="368" y="296" style="fill: RGB(27,27,27); stroke: none;" />
+  <rect width="64" height="64" x="440" y="296" style="fill: RGB(28,28,28); stroke: none;" />
+  <rect width="64" height="64" x="512" y="296" style="fill: RGB(25,25,25); stroke: none;" />
+  <rect width="64" height="64" x="8" y="368" style="fill: RGB(36,36,36); stroke: none;" />
+  <rect width="64" height="64" x="80" y="368" style="fill: RGB(48,48,48); stroke: none;" />
+  <rect width="64" height="64" x="152" y="368" style="fill: RGB(50,50,50); stroke: none;" />
+  <rect width="64" height="64" x="224" y="368" style="fill: RGB(42,42,42); stroke: none;" />
+  <rect width="64" height="64" x="296" y="368" style="fill: RGB(25,25,25); stroke: none;" />
+  <rect width="64" height="64" x="368" y="368" style="fill: RGB(50,50,50); stroke: none;" />
+  <rect width="64" height="64" x="440" y="368" style="fill: RGB(49,49,49); stroke: none;" />
+  <rect width="64" height="64" x="512" y="368" style="fill: RGB(37,37,37); stroke: none;" />
+  <rect width="64" height="64" x="8" y="440" style="fill: RGB(46,46,46); stroke: none;" />
+  <rect width="64" height="64" x="80" y="440" style="fill: RGB(27,27,27); stroke: none;" />
+  <rect width="64" height="64" x="152" y="440" style="fill: RGB(29,29,29); stroke: none;" />
+  <rect width="64" height="64" x="224" y="440" style="fill: RGB(45,45,45); stroke: none;" />
+  <rect width="64" height="64" x="296" y="440" style="fill: RGB(41,41,41); stroke: none;" />
+  <rect width="64" height="64" x="368" y="440" style="fill: RGB(46,46,46); stroke: none;" />
+  <rect width="64" height="64" x="440" y="440" style="fill: RGB(33,33,33); stroke: none;" />
+  <rect width="64" height="64" x="512" y="440" style="fill: RGB(49,49,49); stroke: none;" />
+  <rect width="64" height="64" x="8" y="512" style="fill: RGB(34,34,34); stroke: none;" />
+  <rect width="64" height="64" x="80" y="512" style="fill: RGB(45,45,45); stroke: none;" />
+  <rect width="64" height="64" x="152" y="512" style="fill: RGB(28,28,28); stroke: none;" />
+  <rect width="64" height="64" x="224" y="512" style="fill: RGB(46,46,46); stroke: none;" />
+  <rect width="64" height="64" x="296" y="512" style="fill: RGB(27,27,27); stroke: none;" />
+  <rect width="64" height="64" x="368" y="512" style="fill: RGB(39,39,39); stroke: none;" />
+  <rect width="64" height="64" x="440" y="512" style="fill: RGB(34,34,34); stroke: none;" />
+  <rect width="64" height="64" x="512" y="512" style="fill: RGB(25,25,25); stroke: none;" />
+  <rect width="64" height="64" x="152" y="152" transform="rotate(1.0068357465308952 184.0 184.0)" style="fill: RGB(57,47,47); stroke: none;" />
+  <rect width="64" height="64" x="224" y="152" transform="rotate(1.960746813305989 256.0 184.0)" style="fill: RGB(46,33,33); stroke: none;" />
+  <rect width="64" height="64" x="296" y="152" transform="rotate(-0.09297827856893703 328.0 184.0)" style="fill: RGB(44,30,30); stroke: none;" />
+  <rect width="64" height="64" x="152" y="224" transform="rotate(1.5107231003693589 184.0 256.0)" style="fill: RGB(60,41,41); stroke: none;" />
+  <rect width="64" height="64" x="296" y="224" transform="rotate(0.7155598858354473 328.0 256.0)" style="fill: RGB(63,49,49); stroke: none;" />
+  <rect width="64" height="64" x="152" y="296" transform="rotate(-2.0724368245273106 184.0 328.0)" style="fill: RGB(65,50,50); stroke: none;" />
+  <rect width="64" height="64" x="224" y="296" transform="rotate(2.3590802936339736 256.0 328.0)" style="fill: RGB(63,49,49); stroke: none;" />
+  <rect width="64" height="64" x="296" y="296" transform="rotate(1.481445071692682 328.0 328.0)" style="fill: RGB(49,37,37); stroke: none;" />
+  <rect width="2" height="2" x="255" y="255" transform="rotate(0.0 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 2.025089528628539; opacity: 58%;" />
+  <rect width="4" height="4" x="254" y="254" transform="rotate(-0.052942683484398206 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.3822412753390877; opacity: 50%;" />
+  <rect width="6" height="6" x="253" y="253" transform="rotate(-0.685233458283258 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.4801410533100944; opacity: 52%;" />
+  <rect width="8" height="8" x="252" y="252" transform="rotate(1.0559301062188973 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.899758615701698; opacity: 75%;" />
+  <rect width="10" height="10" x="251" y="251" transform="rotate(-0.7663494484087026 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.4940285900278985; opacity: 58%;" />
+  <rect width="12" height="12" x="250" y="250" transform="rotate(0.26479921213070345 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.40736769969115005; opacity: 61%;" />
+  <rect width="14" height="14" x="249" y="249" transform="rotate(0.49097413662263245 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.5406788890913511; opacity: 61%;" />
+  <rect width="16" height="16" x="248" y="248" transform="rotate(-1.988544814601572 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.5302174736808508; opacity: 62%;" />
+  <rect width="18" height="18" x="247" y="247" transform="rotate(-1.5418237706938054 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.0703520146979038; opacity: 59%;" />
+  <rect width="20" height="20" x="246" y="246" transform="rotate(1.9805565967091714 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.4908844184124315; opacity: 53%;" />
+  <rect width="22" height="22" x="245" y="245" transform="rotate(-2.8784296629143427 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.5189613038035356; opacity: 50%;" />
+  <rect width="24" height="24" x="244" y="244" transform="rotate(-3.8351325284948476 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.9721555905375799; opacity: 75%;" />
+  <rect width="26" height="26" x="243" y="243" transform="rotate(-4.411645278391931 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.30089844622583317; opacity: 57%;" />
+  <rect width="28" height="28" x="242" y="242" transform="rotate(-1.3181722457135836 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.8200522511960583; opacity: 70%;" />
+  <rect width="30" height="30" x="241" y="241" transform="rotate(2.3032084247563764 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.3313020662457392; opacity: 50%;" />
+  <rect width="32" height="32" x="240" y="240" transform="rotate(0.28348910352310547 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.951528692668224; opacity: 51%;" />
+  <rect width="34" height="34" x="239" y="239" transform="rotate(0.5199600929453552 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.4944657712941214; opacity: 55%;" />
+  <rect width="36" height="36" x="238" y="238" transform="rotate(2.2677252129580583 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.8772847230016645; opacity: 72%;" />
+  <rect width="38" height="38" x="237" y="237" transform="rotate(3.0653531771916214 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 2.0358220442568156; opacity: 57%;" />
+  <rect width="40" height="40" x="236" y="236" transform="rotate(-3.7071326895290135 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.7087134458345954; opacity: 53%;" />
+  <rect width="42" height="42" x="235" y="235" transform="rotate(-1.9332840934780111 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.4368733467153938; opacity: 61%;" />
+  <rect width="44" height="44" x="234" y="234" transform="rotate(-3.5871424593530916 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.5494746237361229; opacity: 59%;" />
+  <rect width="46" height="46" x="233" y="233" transform="rotate(-5.563893945869564 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.5898728987254119; opacity: 65%;" />
+  <rect width="48" height="48" x="232" y="232" transform="rotate(-4.915329405946578 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.3669746347958305; opacity: 72%;" />
+  <rect width="50" height="50" x="231" y="231" transform="rotate(2.409742018923096 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.8566656835016812; opacity: 71%;" />
+  <rect width="52" height="52" x="230" y="230" transform="rotate(4.774754081885035 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.31834186122623265; opacity: 75%;" />
+  <rect width="54" height="54" x="229" y="229" transform="rotate(-0.4437335072508817 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.5495109803778908; opacity: 59%;" />
+  <rect width="56" height="56" x="228" y="228" transform="rotate(-9.98053262416393 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.2631602474015099; opacity: 65%;" />
+  <rect width="58" height="58" x="227" y="227" transform="rotate(9.641950666164803 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 2.079893604670498; opacity: 75%;" />
+  <rect width="60" height="60" x="226" y="226" transform="rotate(4.553027254231996 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.6582089130748793; opacity: 55%;" />
+  <rect width="62" height="62" x="225" y="225" transform="rotate(9.290130495922465 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.7755049272002525; opacity: 70%;" />
+  <rect width="64" height="64" x="224" y="224" transform="rotate(-10.82650308249399 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.4303150261370149; opacity: 56%;" />
+  <rect width="66" height="66" x="223" y="223" transform="rotate(-6.505172275599284 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.5267455297937825; opacity: 66%;" />
+  <rect width="68" height="68" x="222" y="222" transform="rotate(2.997077422981794 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.6282593296149434; opacity: 62%;" />
+  <rect width="70" height="70" x="221" y="221" transform="rotate(12.618557585804215 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.9000553653946303; opacity: 72%;" />
+  <rect width="72" height="72" x="220" y="220" transform="rotate(-4.798421713023798 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.8564658550644433; opacity: 51%;" />
+  <rect width="74" height="74" x="219" y="219" transform="rotate(0.6555254134033485 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.3387734316122597; opacity: 56%;" />
+  <rect width="76" height="76" x="218" y="218" transform="rotate(-10.438328618112108 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.734660587056182; opacity: 67%;" />
+  <rect width="78" height="78" x="217" y="217" transform="rotate(-9.529311388192909 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.3035909311552737; opacity: 58%;" />
+  <rect width="80" height="80" x="216" y="216" transform="rotate(-8.604195239450394 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.12742153263399217; opacity: 59%;" />
+  <rect width="82" height="82" x="215" y="215" transform="rotate(-1.2815658616699432 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.322365632959019; opacity: 61%;" />
+  <rect width="84" height="84" x="214" y="214" transform="rotate(-4.1357409573340975 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 0.5238061616427826; opacity: 56%;" />
+  <rect width="86" height="86" x="213" y="213" transform="rotate(8.716771995815 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.9021140196733084; opacity: 54%;" />
+  <rect width="88" height="88" x="212" y="212" transform="rotate(-2.1933986147209166 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.6102452962669889; opacity: 66%;" />
+  <rect width="90" height="90" x="211" y="211" transform="rotate(-3.5651671379287064 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.160496469660782; opacity: 60%;" />
+  <rect width="92" height="92" x="210" y="210" transform="rotate(-10.73565487761139 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.8381489191446427; opacity: 56%;" />
+  <rect width="94" height="94" x="209" y="209" transform="rotate(4.273498994867051 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.0126228095510013; opacity: 53%;" />
+  <rect width="96" height="96" x="208" y="208" transform="rotate(6.896176207982834 256 256)" style="fill: none; stroke: RGB(220,20,60); stroke-width: 1.8365777913960797; opacity: 73%;" />
+</svg>
+```
+</details>

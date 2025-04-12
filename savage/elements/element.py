@@ -7,6 +7,7 @@ class Element:
         self.styles['fill'] = kwargs.get('fill', None)
         self.styles['stroke'] = kwargs.get('stroke', None)
         self.styles['stroke-width'] = kwargs.get('strokewidth', None)
+        self.styles['opacity'] = kwargs.get('opacity', None)
         self.transformations = []
         
     def translate(self, dx, dy):

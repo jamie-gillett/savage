@@ -42,7 +42,7 @@ class Graphic:
         if self.tags_used or self.text_used:
             svg_string += "  </style>\n"
         if self.background:
-            svg_string += f'  <rect width="100%" height="100%" style="fill: {self.background};" />\n'
+            svg_string += f'  <rect width="100%" height="100%" style="fill: {self.background}; stroke: none" />\n'
         for element in self.elements:
             svg_string += "  " + element.to_svg() + "\n"
         svg_string += """</svg>"""
