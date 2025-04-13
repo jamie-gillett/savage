@@ -1,6 +1,6 @@
 [project]
 name = "savage-generator"
-version = "0.1.0"
+version = "0.1.1"
 description = "A basic SVG generator in Python"
 authors = [{name = "Jamie Gillett", email = "jamie.gillett@gmail.com"}]
 readme = "README.md"
