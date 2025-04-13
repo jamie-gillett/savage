@@ -1,4 +1,4 @@
-from elements import Element, Shape
+from .elements import Element, Shape
 
 class Graphic:
     def __init__(self, width=None, height=None, background=None, **kwargs):
