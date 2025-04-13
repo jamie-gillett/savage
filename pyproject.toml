@@ -1,5 +1,5 @@
 [project]
-name = "savage"
+name = "savage-generator"
 version = "0.1.0"
 description = "A basic SVG generator in Python"
 authors = [{name = "Jamie Gillett", email = "jamie.gillett@gmail.com"}]
@@ -9,6 +9,10 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
+
+[project.urls]
+Homepage = "https://github.com/jamie-gillett/savage"
+Issues = "https://github.com/jamie-gillett/savage/issues"
 
 [project.optional-dependencies]
 dev = [
