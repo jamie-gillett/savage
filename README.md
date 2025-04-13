@@ -17,6 +17,12 @@ At its core is the `Graphic` class, which represents a complete SVG document. Co
 
 ## Installation
 
+To install Savage for use in other projects, use:
+``` bash
+pip install savage-generator
+```
+
+
 To install Savage in editable mode (for development), follow these steps:
 
 ### Clone the repository  
