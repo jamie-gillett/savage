@@ -21,8 +21,8 @@ dev = [
     "pytest-cov >= 3.0"
 ]
 
-[tool.setuptools.packages.find]
-where = ["savage"]
+[tool.setuptools]
+packages = ["savage"]
 
 [build-system]
 requires = ["setuptools>=61.0"]
