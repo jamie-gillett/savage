@@ -25,6 +25,7 @@ class Graphic:
             self.text_used = True
 
     def to_svg(self):
+        # TODO: allow default styles to be specified for shapes
         svg_string = """<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n"""
         width_svg = f' width="{self.width}"' if self.width is not None else ""
         height_svg = f' height="{self.height}"' if self.height is not None else ""
@@ -44,7 +45,8 @@ class Graphic:
         if self.background:
             svg_string += f'  <rect width="100%" height="100%" style="fill: {self.background}; stroke: none" />\n'
         for element in self.elements:
-            svg_string += "  " + element.to_svg() + "\n"
+            # svg_string += "  " + element.to_svg() + "\n"
+            svg_string += element.to_svg() + "\n"
         svg_string += """</svg>"""
         return svg_string
     

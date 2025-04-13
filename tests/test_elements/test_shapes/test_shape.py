@@ -11,6 +11,7 @@ class DummyShape(Shape):
 def test_shape_generates_self_closing_tag():
     shape = DummyShape()
     svg = shape.to_svg()
+    svg = svg.strip()
     
     assert svg.startswith("<dummy")
     assert svg.endswith(" />")

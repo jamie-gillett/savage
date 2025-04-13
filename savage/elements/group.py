@@ -12,8 +12,8 @@ class Group(Element):
     def add_open_tag_svg(self):
         return super().add_open_tag_svg() +"\n"
     
-    def add_content_svg(self):
+    def add_content_svg(self, indentation=2):
         content_svg = ""
         for element in self.content:
-            content_svg += "  " + element.to_svg() + "\n"
+            content_svg += element.to_svg(indentation+2) + "\n"
         return content_svg

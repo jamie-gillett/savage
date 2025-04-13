@@ -34,9 +34,10 @@ class Element:
             self.transformations.append(f"skewY({y})")
         return self
 
-    def to_svg(self):
-        svg_string = self.add_open_tag_svg()
-        svg_string += self.add_content_svg()
+    def to_svg(self, indentation=2):
+        svg_string = indentation * " "
+        svg_string += self.add_open_tag_svg()
+        svg_string += self.add_content_svg(indentation)
         svg_string += f"</{self.tag}>"
         return svg_string
 
@@ -65,5 +66,5 @@ class Element:
             return f''' transform="{" ".join(self.transformations)}"'''
         return ""
 
-    def add_content_svg(self):
+    def add_content_svg(self, indentation=None):
         return self.content
