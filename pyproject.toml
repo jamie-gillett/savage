@@ -1,6 +1,6 @@
 [project]
 name = "savage-generator"
-version = "0.1.1"
+version = "0.1.2"
 description = "A basic SVG generator in Python"
 authors = [{name = "Jamie Gillett", email = "jamie.gillett@gmail.com"}]
 readme = "README.md"
@@ -23,6 +23,7 @@ dev = [
 
 [tool.setuptools]
 packages = ["savage"]
+include-package-data = true
 
 [build-system]
 requires = ["setuptools>=61.0"]
