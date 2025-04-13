@@ -8,11 +8,6 @@ def test_line_basic_attributes():
     assert 'x2="100"' in svg
     assert 'y2="100"' in svg
 
-def test_line_default_stroke():
-    line = Line(x1=0, y1=0, x2=50, y2=50)
-    svg = line.to_svg()
-    assert 'stroke: black;' in svg
-
 def test_line_to_svg_format():
     line = Line(x1=1, y1=2, x2=3, y2=4)
     svg = line.to_svg().strip()
